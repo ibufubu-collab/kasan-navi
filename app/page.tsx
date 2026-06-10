@@ -1,65 +1,57 @@
-import Image from "next/image";
+import Link from "next/link";
+
+const points = [
+  {
+    title: "2026年度改定に対応",
+    body: "地域支援・医薬品供給対応体制加算、調剤時残薬調整加算、ベースアップ評価料など、今回の改定で動いた項目を中心に診断します。",
+  },
+  {
+    title: "入力は月次の集計値だけ",
+    body: "処方箋枚数や在宅実績などの集計値のみ。患者さんの情報は一切入力しません。",
+  },
+  {
+    title: "2分で概算がわかる",
+    body: "算定できている加算・あと一歩の加算・取りこぼし額の概算を、計算根拠つきで表示します。",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div className="space-y-10">
+      <section className="space-y-4 pt-4">
+        <h1 className="text-2xl font-bold leading-snug sm:text-3xl">
+          あなたの薬局、
+          <br />
+          加算を取りこぼしていませんか?
+        </h1>
+        <p className="text-sm leading-relaxed text-slate-600">
+          2026年度(令和8年度)調剤報酬改定で、加算の構成は大きく変わりました。月次の数字を入れるだけで、
+          いま算定できる加算と「あと一歩」の加算、機会損失の概算を表示します。無料・登録不要です。
+        </p>
+        <Link
+          href="/shindan"
+          className="block w-full rounded-xl bg-emerald-600 px-6 py-4 text-center text-base font-bold text-white hover:bg-emerald-700 sm:w-auto sm:inline-block"
+        >
+          無料で診断する(約2分)
+        </Link>
+      </section>
+
+      <section className="grid gap-4 sm:grid-cols-3">
+        {points.map((p) => (
+          <div key={p.title} className="rounded-xl border border-slate-200 bg-white p-4">
+            <h2 className="mb-2 text-sm font-bold text-emerald-700">{p.title}</h2>
+            <p className="text-xs leading-relaxed text-slate-600">{p.body}</p>
+          </div>
+        ))}
+      </section>
+
+      <section className="rounded-xl border border-slate-200 bg-white p-5">
+        <h2 className="mb-2 text-sm font-bold">運営者について</h2>
+        <p className="text-xs leading-relaxed text-slate-600">
+          薬局業界出身の野呂伊吹が、日本薬剤師会・厚生労働省の一次資料をもとに作成しています。
+          診断ロジックの根拠資料は結果画面からすべて確認できます。
+        </p>
+      </section>
     </div>
   );
 }
